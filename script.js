@@ -1,37 +1,36 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("loginForm");
-    const usernameInput = document.getElementById("username");
-    const passwordInput = document.getElementById("password");
-    const rememberMeCheckbox = document.getElementById("checkbox");
-    const existingButton = document.getElementById("existing");
+// Function to handle form submission
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+  event.preventDefault();
 
-    // Check if saved credentials exist
-    const savedUsername = localStorage.getItem("username");
-    const savedPassword = localStorage.getItem("password");
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  const rememberMe = document.getElementById('checkbox').checked;
 
-    if (savedUsername && savedPassword) {
-        existingButton.style.display = "inline-block";
-    }
+  if (rememberMe) {
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
+  } else {
+    localStorage.removeItem('username');
+    localStorage.removeItem('password');
+  }
 
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const username = usernameInput.value;
-        const password = passwordInput.value;
-
-        if (rememberMeCheckbox.checked) {
-            localStorage.setItem("username", username);
-            localStorage.setItem("password", password);
-        } else {
-            localStorage.removeItem("username");
-            localStorage.removeItem("password");
-        }
-
-        alert(`Logged in as ${username}`);
-    });
-
-    existingButton.addEventListener("click", function () {
-        const username = localStorage.getItem("username");
-        alert(`Logged in as ${username}`);
-    });
+  alert(`Logged in as ${username}`);
+  checkExistingUser();
 });
+
+// Function to check if there are saved credentials in localStorage
+function checkExistingUser() {
+  const username = localStorage.getItem('username');
+  if (username) {
+    document.getElementById('existing').style.display = 'block';
+  }
+}
+
+// Function to log in as existing user
+document.getElementById('existing').addEventListener('click', function() {
+  const username = localStorage.getItem('username');
+  alert(`Logged in as ${username}`);
+});
+
+// Check if user details are already saved when the page loads
+window.onload = checkExistingUser;

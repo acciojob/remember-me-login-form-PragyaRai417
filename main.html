@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="styles.css">
-    <title>Login Form</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <div class="login-container">
     <h1>Login Form</h1>
     <form id="loginForm">
-        <input type="text" id="username" placeholder="Username" required><br><br>
-        <input type="password" id="password" placeholder="Password" required><br><br>
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <div>
         <input type="checkbox" id="checkbox">
-        <label for="checkbox">Remember me</label><br><br>
-        <input type="submit" id="submit" value="Submit">
+        <label for="checkbox">Remember me</label>
+      </div>
+      <input type="submit" id="submit" value="Submit">
     </form>
     <button id="existing" style="display: none;">Login as existing user</button>
+  </div>
 
-    <script type="text/javascript" src="./script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
